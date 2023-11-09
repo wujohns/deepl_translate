@@ -25,7 +25,6 @@ def input_modifier(string):
   
   translator = deepl.translator.Translator(params['auth_key'])
   result = translator.translate_text(string, target_lang=params['bot_lang_code'])
-  print('input ---------', result.text)
   return result.text
 
 def output_modifier(string):
