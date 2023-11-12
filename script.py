@@ -1,5 +1,6 @@
 import gradio as gr
 import deepl
+import os
 
 params = {
   "activate": True,
@@ -14,6 +15,14 @@ language_codes = {
   'Japanese': 'JA',
   'Chinese': 'ZH'
 }
+
+def setup():
+  if os.getenv('DEEPL_AUTH_KEY'):
+    params.update({ 'auth_key': os.getenv('DEEPL_AUTH_KEY') })
+  if os.getenv('DEEPL_USER_LANG_CODE'):
+    params.update({ 'user_lang_code': os.getenv('DEEPL_USER_LANG_CODE') })
+  if os.getenv('DEEPL_BOT_LANG_CODE'):
+    params.update({ 'bot_lang_code': os.getenv('DEEPL_BOT_LANG_CODE') })
 
 def input_modifier(string):
   """
